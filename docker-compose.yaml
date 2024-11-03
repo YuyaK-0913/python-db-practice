@@ -15,7 +15,21 @@ services:
       # - ./mysql/data:/work # 手動でテーブルを作成する場合
       # - ./mysql/conf.d:/etc/mysql/conf.d
     ports:
-      - "3306:3306"
+      - 3306:3306
+
+  bi:
+    image: bi
+    container_name: bi
+    environment:
+      - MYSQL_HOST=sample_db
+      - MYSQL_PORT=3306
+      - MYSQL_USER=myuser
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=mydatabase
+    ports:
+      - 8501:8501
+    
+
 
 # version: '3.8'
 # services:

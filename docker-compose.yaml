@@ -3,7 +3,7 @@ services:
 
   sample_db:
     # image: mysql:8.2.0
-    image: nyankopunch/statscast-mysql-loader:v1.0
+    image: nyankopunch/statscast-mysql-loader:v2.0
     container_name: sample_db
     environment:
       MYSQL_ROOT_PASSWORD: password

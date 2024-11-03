@@ -3,11 +3,9 @@
 ## データを取得するコンテナ
 FROM python:3.10.6-slim as data-fetcher
 
-COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir pybaseball
-# RUN pip install --no-cache-dir -r requirements.txt
 
-COPY mysql/data/get_baseball_data.py /data/get_baseball_data.py
+COPY data/get_baseball_data.py /data/get_baseball_data.py
 WORKDIR /data
 
 # CMD ["/bin/bash", "-c", "while true; do sleep 1; done"]
@@ -19,6 +17,6 @@ FROM mysql:8.2.0
 
 COPY --from=data-fetcher /data/ohtani_batting_data.csv /var/lib/mysql-files/ohtani_batting_data.csv
 
-COPY mysql/conf.d/my.cnf /etc/mysql/conf.d/my.cnf
+COPY conf.d/my.cnf /etc/mysql/conf.d/my.cnf
 RUN chmod 644 /etc/mysql/conf.d/my.cnf
 

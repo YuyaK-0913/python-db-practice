@@ -1,0 +1,47 @@
+version: "3.8"
+services:
+
+  sample_db:
+    image: mysql:8.2.0
+    container_name: sample_db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: password
+    volumes:
+      # - ./mysql/data:/docker-entrypoint-initdb.d # 自動でテーブルを作成する場合
+      - ./mysql/data:/var/lib/mysql-files/ # 手動でテーブルを作成する場合
+    ports:
+      - "3306:3306"
+
+# version: '3.8'
+# services:
+#   panel-app:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile
+#     ports:
+#       - "5006:5006"
+#     volumes:
+#       - ./src:/work/src
+#     command: ["panel", "serve", "--port", "5006", "src/app4.py", "--autoreload"]
+
+
+# version: "3.8"
+# services:
+#   jupyter:
+#     container_name: jupyter
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.jupyter
+#     # image: jupyter/base-notebook:latest
+#     ports:
+#       - 8888:8888
+#     volumes:
+#       - type: bind
+#         source: ./jupyter/work
+#         target: /home/jovyan/work
+#     environment: 
+#       JUPYTER_TOKEN : ''
+#     command: start.sh jupyter lab --NotebookApp.token=''

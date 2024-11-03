@@ -1,0 +1,5 @@
+name,email,age,city,country,status,phone
+John Doe,johndoe@example.com,30,New York,USA,active,123-456-7890
+Jane Smith,janesmith@example.com,25,Los Angeles,USA,inactive,987-654-3210
+Alice Brown,alicebrown@example.com,28,Chicago,USA,active,555-666-7777
+Bob White,bobwhite@example.com,35,Houston,USA,active,444-555-6666

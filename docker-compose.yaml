@@ -28,8 +28,34 @@ services:
       - MYSQL_DATABASE=mydatabase
     ports:
       - 8501:8501
+    volumes:
+      - type: bind
+        source: ./bi/src
+        target: /src
+    depends_on:
+      - sample_db
     
-
+  jupyter:
+    container_name: jupyter
+    build:
+      context: ./jupyter
+      dockerfile: Dockerfile
+    environment: 
+      JUPYTER_TOKEN : ''
+      MYSQL_HOST: sample_db
+      MYSQL_PORT: 3306
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: mydatabase
+    ports:
+      - 8888:8888
+    volumes:
+      - type: bind
+        source: ./jupyter/work
+        target: /home/jovyan/work
+    command: start.sh jupyter lab --NotebookApp.token=''
+    depends_on:
+      - sample_db
 
 # version: '3.8'
 # services:
@@ -43,21 +69,4 @@ services:
 #       - ./src:/work/src
 #     command: ["panel", "serve", "--port", "5006", "src/app4.py", "--autoreload"]
 
-
-# version: "3.8"
-# services:
-#   jupyter:
-#     container_name: jupyter
-#     build:
-#       context: .
-#       dockerfile: Dockerfile.jupyter
-#     # image: jupyter/base-notebook:latest
-#     ports:
-#       - 8888:8888
-#     volumes:
-#       - type: bind
-#         source: ./jupyter/work
-#         target: /home/jovyan/work
-#     environment: 
-#       JUPYTER_TOKEN : ''
-#     command: start.sh jupyter lab --NotebookApp.token=''
+  

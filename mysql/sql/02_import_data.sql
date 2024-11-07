@@ -1,6 +1,6 @@
 -- 大谷選手のバッティングデータをインポート
 LOAD DATA INFILE '/var/lib/mysql-files/ohtani_batting_data.csv'
-INTO TABLE ohtani_batting
+INTO TABLE batting
 FIELDS TERMINATED BY ',' 
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'

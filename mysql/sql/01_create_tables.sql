@@ -1,5 +1,5 @@
 -- バッティングデータ用のテーブル作成
-CREATE TABLE IF NOT EXISTS ohtani_batting (
+CREATE TABLE IF NOT EXISTS batting (
     game_date DATE,
     pitch_type VARCHAR(10),
     release_speed FLOAT NULL,       

@@ -14,5 +14,4 @@ COPY src /src
 
 WORKDIR /src
 
-CMD ["/bin/bash", "-c", "while true; do sleep 1; done"]
-# CMD [ "streamlit", "run", "src/main.py" ]
+# CMD ["/bin/bash", "-c", "while true; do sleep 1; done"]

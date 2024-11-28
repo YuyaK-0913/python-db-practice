@@ -39,38 +39,25 @@ services:
       - sample_db
     command: sh -c "sleep 10 && panel serve --port 5006 panel.py --autoreload"
     
-  jupyter:
-    container_name: jupyter
-    build:
-      context: ./jupyter
-      dockerfile: Dockerfile
-    environment: 
-      JUPYTER_TOKEN : ''
-      MYSQL_HOST: sample_db
-      MYSQL_PORT: 3306
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: mydatabase
-    ports:
-      - 8888:8888
-    volumes:
-      - type: bind
-        source: ./jupyter/work
-        target: /home/jovyan/work
-    command: start.sh jupyter lab --NotebookApp.token=''
-    depends_on:
-      - sample_db
+  # jupyter:
+  #   container_name: jupyter
+  #   build:
+  #     context: ./jupyter
+  #     dockerfile: Dockerfile
+  #   environment: 
+  #     JUPYTER_TOKEN : ''
+  #     MYSQL_HOST: sample_db
+  #     MYSQL_PORT: 3306
+  #     MYSQL_USER: myuser
+  #     MYSQL_PASSWORD: password
+  #     MYSQL_DATABASE: mydatabase
+  #   ports:
+  #     - 8888:8888
+  #   volumes:
+  #     - type: bind
+  #       source: ./jupyter/work
+  #       target: /home/jovyan/work
+  #   command: start.sh jupyter lab --NotebookApp.token=''
+  #   depends_on:
+  #     - sample_db
 
-# version: '3.8'
-# services:
-#   panel-app:
-#     build:
-#       context: .
-#       dockerfile: Dockerfile
-#     ports:
-#       - "5006:5006"
-#     volumes:
-#       - ./src:/work/src
-#     command: ["panel", "serve", "--port", "5006", "src/app4.py", "--autoreload"]
-
-  
